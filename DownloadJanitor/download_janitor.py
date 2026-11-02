@@ -184,7 +184,7 @@ def copy_without_overwrite(source, destination, expected_hash):
     destination.parent.mkdir(parents=True, exist_ok=True)
     created = False
     try:
-        # 'xb' fails if the destination already exists (including most symlinks).
+        # 'xb' fails if the destination already exists (including most symlinks)..
         with source.open("rb") as reader, destination.open("xb") as writer:
             created = True
             shutil.copyfileobj(reader, writer)
@@ -199,8 +199,7 @@ def copy_without_overwrite(source, destination, expected_hash):
         source.unlink()
 
     except Exception:
-        # Only clean up a file created by this call. If the source has already
-        # disappeared, leave the destination for manual recovery.
+
         if created and source.exists():
             try:
                 destination.unlink()
@@ -384,7 +383,7 @@ def undo(run_id, apply):
     print(f"Journal: {path}\n")
 
     restored = skipped = failed = 0
-    # Undo in reverse order of original moves.
+    # Undo in reverse order of original moves (reversal of file transfer does not delete folders created by the program)
     for entry in reversed(data["operations"]):
         status = entry.get("status")
         if status != "completed":
@@ -594,7 +593,7 @@ def main():
     recovery_clear = check_recovery_status()
 
     # Diagnostics are read-only. Never perform file-changing actions while
-    # a journal is unresolved or unreadable; previews/history remain available.
+    # a journal is unresolved or unreadable to prevent any data losses; previews/history will remain available
     if args.apply and not recovery_clear:
         print("[BLOCKED] File-changing actions paused until journal issues are reviewed.")
         return 1
