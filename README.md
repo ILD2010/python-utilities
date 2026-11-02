@@ -6,7 +6,7 @@ These projects focus on practical functionality and simplicity as a developer an
 
 ## Development
 
-These utilities are personal projects built to strengthen my Python skills and explore practical ways to automate repetitive tasks. I'll continue updating and expanding them as I learn.
+These utilities are personal projects built to strengthen my Python skills and explore practical ways to automate repetitive tasks. I'll continue updating and expanding them as I advance.
 
 ## License
 
